@@ -1,0 +1,572 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions &#8212; demo1 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="File handling" href="file.html" />
+    <link rel="prev" title="Strings" href="strings.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="file.html" title="File handling"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="strings.html" title="Strings"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Functions</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<p>Reusing the same code is required many times within a same program. Functions
+help us to do so. We write the things we have to do repeatedly in a function
+then call it where ever required. We already saw build in functions like
+<em>len()</em>, <em>divmod()</em>.</p>
+<div class="section" id="defining-a-function">
+<h2>Defining a function<a class="headerlink" href="#defining-a-function" title="Permalink to this headline">¶</a></h2>
+<p>We use <em>def</em> keyword to define a function. General syntax is like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">functionname</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="n">statement1</span>
+    <span class="n">statement2</span>
+</pre></div>
+</div>
+<p>Let us write a function which will take two integers as input and then return
+the sum.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>In the second line with the <em>return</em> keyword, we are sending back the value of
+<em>a + b</em> to the caller. You must call it like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">234234</span><span class="p">,</span> <span class="mi">34453546464</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span>
+<span class="go">34453780698L</span>
+</pre></div>
+</div>
+<p>Remember the palindrome program we wrote in the last chapter. Let us write a
+function which will check if a given string is palindrome or not, then return
+<em>True</em> or <em>False</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+
+<span class="k">def</span> <span class="nf">palindrome</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">==</span> <span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a string: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">palindrome</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yay a palindrome&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Oh no, not a palindrome&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now run the code :)</p>
+</div>
+<div class="section" id="local-and-global-variables">
+<h2>Local and global variables<a class="headerlink" href="#local-and-global-variables" title="Permalink to this headline">¶</a></h2>
+<p>To understand local and global variables we will go through two examples.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+
+<span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">90</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inside of the change function </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Before the function call </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">change</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;After the function call </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./local.py
+Before the function call  9
+Inside of the change function 90
+After the function call  9
+</pre></div>
+</div>
+<p>First we are assigning <em>9</em> to <em>a</em>, then calling change function, inside of that
+we are assigning <em>90</em> to <em>a</em> and printing <em>a</em>. After the function call we are
+again printing the value of <em>a</em>. When we are writing <em>a = 90</em> inside the
+function, it is actually creating a new variable called <em>a</em>, which is only
+available inside the function and will be destroyed after the function finished.
+So though the name is same for the variable <em>a</em> but they are different in and
+out side of the function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="k">def</span> <span class="nf">change</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">a</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">90</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before the function call &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inside change function&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">change</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After the function call &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here by using global keyword we are telling that <em>a</em> is globally defined, so
+when we are changing a’s value inside the function it is actually changing for
+the <em>a</em> outside of the function also.</p>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./local.py
+Before the function call  9
+inside change function 90
+After the function call  90
+</pre></div>
+</div>
+</div>
+<div class="section" id="default-argument-value">
+<h2>Default argument value<a class="headerlink" href="#default-argument-value" title="Permalink to this headline">¶</a></h2>
+<p>In a function variables may have default argument values, that means if we don’t
+give any value for that particular variable it will be assigned automatically.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">a</span> <span class="p">,</span> <span class="n">b</span><span class="o">=-</span><span class="mi">99</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>In the above example we have written <em>b = -99</em> in the function parameter list.
+That means if no value for <em>b</em> is given then b’s value is <em>-99</em>. This is a very
+simple example of default arguments. You can test the code by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Important</p>
+<p>Remember that you can not have an argument without default argument if you already have one argument with default values before it. Like <em>f(a, b=90, c)</em> is illegal as <em>b</em> is having a default value but after that <em>c</em> is not having any default value.</p>
+</div>
+<p>Also remember that default value is evaluated only once, so if you have any
+mutable object like list it will make a difference. See the next example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">[]):</span>
+<span class="gp">... </span>    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">data</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">[1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">[1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="go">[1, 2, 3]</span>
+</pre></div>
+</div>
+<p>To avoid this you can write more idiomatic Python, like the following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">data</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="go">[1]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="go">[2]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To understand more read <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#default-argument-values">this url</a>.</p>
+</div>
+</div>
+<div class="section" id="keyword-arguments">
+<h2>Keyword arguments<a class="headerlink" href="#keyword-arguments" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a is&#39;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s1">&#39;and b is&#39;</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="s1">&#39;and c is&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+<span class="go">a is 12 and b is 24 and c is 10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">24</span><span class="p">)</span>
+<span class="go">a is 12 and b is 5 and c is 24</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">24</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">a is -1 and b is 12 and c is 24</span>
+</pre></div>
+</div>
+<p>In the above example you can see we are calling the function with variable
+names, like <em>func(12, c = 24)</em>, by that we are assigning <em>24</em> to <em>c</em> and <em>b</em> is
+getting its default value. Also remember that you can not have without keyword
+based argument after a keyword based argument. like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">File &quot;&lt;stdin&gt;&quot;, line 1</span>
+<span class="go">SyntaxError: non-default argument follows default argument</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="keyword-only-argument">
+<h2>Keyword only argument<a class="headerlink" href="#keyword-only-argument" title="Permalink to this headline">¶</a></h2>
+<p>We can also mark the arguments of function as keyword only. That way while
+calling the function, the user will be forced to use correct keyword for each
+parameter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;User&#39;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hello</span><span class="p">(</span><span class="s1">&#39;Kushal&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">hello() takes 0 positional arguments but 1 was given</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hello</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Kushal&#39;</span><span class="p">)</span>
+<span class="go">Hello Kushal</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To learn more please read <a class="reference external" href="https://www.python.org/dev/peps/pep-3102/">PEP-3102</a>.</p>
+</div>
+</div>
+<div class="section" id="positional-only-argument">
+<h2>Positional only argument<a class="headerlink" href="#positional-only-argument" title="Permalink to this headline">¶</a></h2>
+<p>From Python3.8, we can also mark any function to have only positional arguments. Write
+<cite>/</cite> at the end of all positional arguments in the function definition to have this feature.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; def add(a, b, /):
+...   return a + b
+...
+&gt;&gt;&gt; add(2, 3)
+5
+&gt;&gt;&gt; add(a=2, b=3)
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: add() got some positional-only arguments passed as keyword arguments: &#39;a, b&#39;
+</pre></div>
+</div>
+<p>You can see that when we tried to call the <cite>add</cite> with keyword arguments, it raised a <cite>TypeError</cite>.</p>
+</div>
+<div class="section" id="docstrings">
+<h2>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this headline">¶</a></h2>
+<p>In Python we use docstrings to explain how to use the code, it will be useful in
+interactive mode and to create auto-documentation. Below we see an example of
+the docstring for a function called <em>longest_side</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">longest_side</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to find the length of the longest side of a right triangle.</span>
+
+<span class="sd">    :arg a: Side a of the triangle</span>
+<span class="sd">    :arg b: Side b of the triangle</span>
+
+<span class="sd">    :return: Length of the longest side c as float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">longest_side</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We will learn more on docstrings in reStructuredText chapter.</p>
+</div>
+<div class="section" id="higher-order-function">
+<h2>Higher-order function<a class="headerlink" href="#higher-order-function" title="Permalink to this headline">¶</a></h2>
+<p>Higher-order function or a functor is a function which does at least one of the
+following step inside:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Takes one or more functions as argument.</p></li>
+<li><p>Returns another function as output.</p></li>
+</ul>
+</div></blockquote>
+<p>In Python any function can act as higher order function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">high</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="n">high</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span>
+<span class="go">[&#39;imag&#39;, &#39;numerator&#39;, &#39;real&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let us look at another example. We will create a function, which in turn
+returns another function to add 5 to the given argument.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>def givemefive():
+    def add5(x):
+        return x + 5
+    return add5
+
+&gt;&gt;&gt; myadder = givemefive()
+&gt;&gt;&gt; print(myadder(10))
+15
+&gt;&gt;&gt; print(type(myadder))
+&lt;class &#39;function&#39;&gt;
+</pre></div>
+</div>
+<p>Here when we call <cite>givemefive</cite>, it is actually returning the function <cite>add5</cite>,
+and storing into <cite>myadder</cite>. Finally when we call the <cite>myadder</cite>, it adds 5 to
+the given argument, and returns it. We also printed the <cite>type</cite> of <cite>myadder</cite></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">givemeadder</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">internal</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">num</span> <span class="o">+</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">internal</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add10</span> <span class="o">=</span> <span class="n">givemeadder</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">add10</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+<span class="mi">30</span>
+</pre></div>
+</div>
+<p>In this example the <cite>internal</cite> function is using the <cite>x</cite> variable from the
+outer scope. This is also known as <cite>closure</cite> where the function is using the
+environment enclosed. If we need a new function which will add 100 to the given
+number, we can do it easily like this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">add_big</span> <span class="o">=</span> <span class="n">givemeadder</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">add_big</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="mi">101</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To know more read <a class="reference external" href="http://docs.python.org/3/faq/programming.html#how-do-you-make-a-higher-order-function-in-python">this link</a>.</p>
+</div>
+</div>
+<div class="section" id="map">
+<h2>map<a class="headerlink" href="#map" title="Permalink to this headline">¶</a></h2>
+<p><cite>map</cite> is a very useful class in python. It takes one function
+and an iterator as input and then applies the function on each value of the
+iterator and returns an iterator.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="s2">&quot;Returns the square of a given number.&quot;</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">lst</span><span class="p">)))</span>
+<span class="go">[1, 4, 9, 16, 25]</span>
+</pre></div>
+</div>
+<p>In Python2, <cite>map</cite> was a function and used to return list.</p>
+</div>
+<div class="section" id="parameters-and-arguments">
+<h2>Parameters and arguments<a class="headerlink" href="#parameters-and-arguments" title="Permalink to this headline">¶</a></h2>
+<p><cite>Parameters</cite> are names defined in a function definition, and <cite>arguments</cite> are the
+actual values passed that function call.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, you are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span>
+
+<span class="n">hello</span><span class="p">(</span><span class="s2">&quot;kushal&quot;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above example, <cite>name</cite> and <cite>age</cite> are the parameters of the <cite>hello</cite>, and <cite>kushal</cite> and <cite>90</cite> are
+the arguments passed to the function.</p>
+</div>
+<div class="section" id="args-and-kwargs-in-function-definition">
+<h2><a href="#id1"><span class="problematic" id="id2">*</span></a>args and <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs in function definition<a class="headerlink" href="#args-and-kwargs-in-function-definition" title="Permalink to this headline">¶</a></h2>
+<p>There are times when we don’t know the number of arguments before hand. There
+can be any number of positional or keyword arguments passed to the function.
+This is where we use <cite>*args</cite> and <cite>**kwargs</cite> in the function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unknown</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;We received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span><span class="si">}</span><span class="s2"> positional arguments. And they are:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;We received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span><span class="si">}</span><span class="s2"> keyword arguments. And they are:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;key=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> and value=</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">unknown</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="s2">&quot;kushal&quot;</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">editor</span><span class="o">=</span><span class="s2">&quot;vim&quot;</span><span class="p">)</span>
+
+<span class="n">We</span> <span class="n">received</span> <span class="mi">3</span> <span class="n">positional</span> <span class="n">arguments</span><span class="o">.</span> <span class="n">And</span> <span class="n">they</span> <span class="n">are</span><span class="p">:</span>
+<span class="mi">30</span> <span class="mi">90</span> <span class="n">kushal</span>
+<span class="n">We</span> <span class="n">received</span> <span class="mi">2</span> <span class="n">keyword</span> <span class="n">arguments</span><span class="o">.</span> <span class="n">And</span> <span class="n">they</span> <span class="n">are</span><span class="p">:</span>
+<span class="n">key</span><span class="o">=</span><span class="n">lang</span> <span class="ow">and</span> <span class="n">value</span><span class="o">=</span><span class="n">python</span>
+<span class="n">key</span><span class="o">=</span><span class="n">editor</span> <span class="ow">and</span> <span class="n">value</span><span class="o">=</span><span class="n">vim</span>
+</pre></div>
+</div>
+<p>This is really helpful when you are writing code which will take another
+function as input, and you don’t know about parameters of that function before
+hand.  We will see more examples later in this book.</p>
+</div>
+<div class="section" id="howto-write-a-function">
+<h2>HOWTO Write a function<a class="headerlink" href="#howto-write-a-function" title="Permalink to this headline">¶</a></h2>
+<p>Watch <a class="reference external" href="https://www.youtube.com/watch?v=rrBJVMyD-Gs">this talk</a> by Jack
+Diederich at PyCon US 2018 to learn more about how to write clean Python
+functions and many other tips.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/pym.png" alt="Logo"/>
+  </a>
+</p>
+<p>
+<iframe src="http://ghbtns.com/github-btn.html?user=kushaldas&repo=pym&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  pym is a book to learn Python.
+  It targets people who are completely
+  new to the language.
+</p>
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '5225487b613f5d4eaf000117');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d2fuc4clr7gvcn.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Functions</a><ul>
+<li><a class="reference internal" href="#defining-a-function">Defining a function</a></li>
+<li><a class="reference internal" href="#local-and-global-variables">Local and global variables</a></li>
+<li><a class="reference internal" href="#default-argument-value">Default argument value</a></li>
+<li><a class="reference internal" href="#keyword-arguments">Keyword arguments</a></li>
+<li><a class="reference internal" href="#keyword-only-argument">Keyword only argument</a></li>
+<li><a class="reference internal" href="#positional-only-argument">Positional only argument</a></li>
+<li><a class="reference internal" href="#docstrings">Docstrings</a></li>
+<li><a class="reference internal" href="#higher-order-function">Higher-order function</a></li>
+<li><a class="reference internal" href="#map">map</a></li>
+<li><a class="reference internal" href="#parameters-and-arguments">Parameters and arguments</a></li>
+<li><a class="reference internal" href="#args-and-kwargs-in-function-definition">*args and **kwargs in function definition</a></li>
+<li><a class="reference internal" href="#howto-write-a-function">HOWTO Write a function</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="strings.html"
+                          title="Previous page">&larr; Strings</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="file.html"
+                          title="Next page">&rarr; File handling</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="file.html" title="File handling"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="strings.html" title="Strings"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Functions</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, ishan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

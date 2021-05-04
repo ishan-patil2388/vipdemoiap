@@ -1,0 +1,456 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Building command line applications with Click &#8212; demo1 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Simple GUI application development using PyperCard" href="pypercard.html" />
+    <link rel="prev" title="A project structure" href="projectstructure.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pypercard.html" title="Simple GUI application development using PyperCard"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="projectstructure.html" title="A project structure"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Building command line applications with Click</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="building-command-line-applications-with-click">
+<h1>Building command line applications with Click<a class="headerlink" href="#building-command-line-applications-with-click" title="Permalink to this headline">¶</a></h1>
+<p>I recommend <a class="reference external" href="http://click.pocoo.org/">click</a>
+module to build command line applications. Like any other project from <a class="reference external" href="http://lucumr.pocoo.org/about/">Armin
+Ronacher</a>, it has great documentation. In this
+post, I am going to write a beginners tutorial, you should the read the
+documentation for any more details and examples.</p>
+<div class="section" id="installation-and-development-tips">
+<h2>Installation, and development tips<a class="headerlink" href="#installation-and-development-tips" title="Permalink to this headline">¶</a></h2>
+<p>Using virtualenv is highly recommended for developing “click” applications. I
+am going to assume that we are in an empty directory and the continue from
+there. To start, we will have a simple hello.py file with the following
+content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cli</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we will need a setup.py file. This will help us to use the python module we
+are writing as a command line tool. It is also the recommended way to write
+command line tools in python, then directly using shebang based scripts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;myhello&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+    <span class="n">py_modules</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">],</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">&#39;Click&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        [console_scripts]</span>
+<span class="s1">        myhello=hello:cli</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>You can see that we mentioned the starting point of our tool in the
+entry_points, <em>hello:cli</em> points to the right function to start with. We can
+then install this on the virtualenv locally. I will also create the virtualenv
+below so that becomes easier others. To learn more, read this
+<a class="reference external" href="http://click.pocoo.org/5/setuptools/#setuptools-integration">chapter</a> later.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m venv env
+$ source env/bin/activate
+$ python3 -m pip install --editable .
+Obtaining file:///home/kdas/code/practice/yoclick
+Collecting Click (from myhello==0.1)
+Using cached click-6.7-py2.py3-none-any.whl
+Installing collected packages: Click, myhello
+Running setup.py develop for myhello
+Successfully installed Click-6.7 myhello
+
+$ myhello
+Hello World
+</pre></div>
+</div>
+<p>Now to convert the same script into a click based tool, we will make the
+following modifications. Now when we execute the command again, we see nothing
+changed visually, but it magically has a <em>–help</em> command line argument (which
+is optional).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myhello
+Hello World
+$ myhello --help
+Usage: myhello [OPTIONS]
+
+Options:
+--help  Show this message and exit.
+</pre></div>
+</div>
+<p>### Using echo for printing text</p>
+<p>The click module suggests using <em>echo</em> function to print, rather than the
+standard print function. So, we will make the required change in our code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">():</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="boolean-flags">
+<h2>Boolean flags<a class="headerlink" href="#boolean-flags" title="Permalink to this headline">¶</a></h2>
+<p>In a command line tool, we sometimes want to have a boolean option. If the
+option is provided then do something, if not provided, then do something else.
+In our example, we will call the flag as <em>–verbose</em>, it is provided, then we
+will print some extra text.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Will print verbose messages.&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;We are in the verbose mode.&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We added another decorator to the cli function. In <em>click.option()</em> decorator,
+first we passed the flag using <em>–verbose</em>, then marked this option as a
+boolean flag, and then finally added the help text.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myhello --help
+Usage: myhello [OPTIONS]
+
+Options:
+--verbose  Will print verbose messages.
+--help     Show this message and exit.
+$ myhello --verbose
+We are in the verbose mode.
+Hello World
+</pre></div>
+</div>
+<p>By default, any boolean flag is treated as false.</p>
+<p>### Standard options in the command line</p>
+<p>We can now add more options to our tool. For example, we will have a <em>–name</em>
+option which will take a string as input.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Will print verbose messages.&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Who are you?&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;We are in the verbose mode.&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Bye </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myhello --help
+Usage: myhello [OPTIONS]
+
+Options:
+--verbose    Will print verbose messages.
+--name TEXT  Who are you?
+--help       Show this message and exit.
+$ myhello
+Hello World
+Bye
+$ myhello --name kushal
+Hello World
+Bye kushal
+</pre></div>
+</div>
+</div>
+<div class="section" id="same-option-multiple-times">
+<h2>Same option multiple times<a class="headerlink" href="#same-option-multiple-times" title="Permalink to this headline">¶</a></h2>
+<p>We may want to take the same option multiple times. Click has a very simple way to do so.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Will print verbose messages.&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Who are you?&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;We are in the verbose mode.&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Bye </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In the above example, you can see that we specified the <em>–name</em> as a multiple
+options. It also means the name parameter in the <em>cli</em> function is now a tuple.</p>
+<p>### Help text for the script</p>
+<p>We can add help text for the script using python docstrings. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Will print verbose messages.&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Who are you?&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is an example script to learn Click.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;We are in the verbose mode.&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Bye </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myhello --help
+Usage: myhello [OPTIONS]
+
+This is an example script to learn Click.
+
+Options:
+--verbose        Will print verbose messages.
+-n, --name TEXT  Who are you?
+--help           Show this message and exit.
+</pre></div>
+</div>
+</div>
+<div class="section" id="super-fast-way-to-accept-password-with-confirmation">
+<h2>Super fast way to accept password with confirmation<a class="headerlink" href="#super-fast-way-to-accept-password-with-confirmation" title="Permalink to this headline">¶</a></h2>
+<p>Click provides a <em>password_option()</em> decorator, which can be used to accept a
+password over hidden prompt and second confirmation prompt. Btw, I am printing
+the password here as an example, never print the password to stdout in any
+tool.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Will print verbose messages.&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Who are you?&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">password_option</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span><span class="n">name</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is an example script to learn Click.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;We are in the verbose mode.&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Bye </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;We received </span><span class="si">{0}</span><span class="s1"> as password.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">password</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The output looks like below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myhello --help
+Usage: myhello [OPTIONS]
+
+This is an example script to learn Click.
+
+Options:
+--verbose        Will print verbose messages.
+-n, --name TEXT  Who are you?
+--password TEXT
+--help           Show this message and exit.
+$ myhello
+Password:
+Repeat for confirmation:
+Hello World
+We received hello as password.
+</pre></div>
+</div>
+<p>To learn the full usage of password prompts, read <a class="reference external" href="http://click.pocoo.org/5/options/#password-prompts">this section</a>.</p>
+</div>
+<div class="section" id="must-have-arguments">
+<h2>Must have arguments<a class="headerlink" href="#must-have-arguments" title="Permalink to this headline">¶</a></h2>
+<p>You can also add arguments to your tool. These are must haves, and if no
+default value is provided, they are assumed to be strings. In the below
+example, the script is expecting a county name to be specified.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">click</span>
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Will print verbose messages.&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--name&#39;</span><span class="p">,</span> <span class="s1">&#39;-n&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Who are you?&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cli</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span><span class="n">name</span><span class="p">,</span> <span class="n">country</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This is an example script to learn Click.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;We are in the verbose mode.&quot;</span><span class="p">)</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Hello </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">country</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Bye </span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The output looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ myhello
+Usage: myhello [OPTIONS] COUNTRY
+
+Error: Missing argument &quot;country&quot;.
+$ myhello India
+Hello India
+</pre></div>
+</div>
+<p>Click has many other useful features, like <em>yes parameter</em>, <em>file path input</em>.
+I am not going to write about all of those here, but you can always from the
+<a class="reference external" href="http://click.pocoo.org/">upstream documentation</a>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/pym.png" alt="Logo"/>
+  </a>
+</p>
+<p>
+<iframe src="http://ghbtns.com/github-btn.html?user=kushaldas&repo=pym&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  pym is a book to learn Python.
+  It targets people who are completely
+  new to the language.
+</p>
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '5225487b613f5d4eaf000117');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d2fuc4clr7gvcn.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Building command line applications with Click</a><ul>
+<li><a class="reference internal" href="#installation-and-development-tips">Installation, and development tips</a></li>
+<li><a class="reference internal" href="#boolean-flags">Boolean flags</a></li>
+<li><a class="reference internal" href="#same-option-multiple-times">Same option multiple times</a></li>
+<li><a class="reference internal" href="#super-fast-way-to-accept-password-with-confirmation">Super fast way to accept password with confirmation</a></li>
+<li><a class="reference internal" href="#must-have-arguments">Must have arguments</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="projectstructure.html"
+                          title="Previous page">&larr; A project structure</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="pypercard.html"
+                          title="Next page">&rarr; Simple GUI application development using PyperCard</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/click.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pypercard.html" title="Simple GUI application development using PyperCard"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="projectstructure.html" title="A project structure"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Building command line applications with Click</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, ishan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

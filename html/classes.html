@@ -1,0 +1,795 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class &#8212; demo1 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modules" href="modules.html" />
+    <link rel="prev" title="Exceptions" href="exceptions.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modules.html" title="Modules"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exceptions.html" title="Exceptions"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Class</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="class">
+<h1>Class<a class="headerlink" href="#class" title="Permalink to this headline">¶</a></h1>
+<p>Classes and objects are part of programming idea also known as <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object-oriented
+programming</a>. Here
+the data, and functions working on the data stays together (we call those
+functions as methods in the objects). <a class="reference external" href="https://en.wikipedia.org/wiki/Object-oriented_programming#History">Simula</a> is the
+first language which featured these ideas. <cite>Java</cite> and <cite>C++</cite> are two most known
+object oriented programming languages in the schools.</p>
+<div class="section" id="your-first-class">
+<h2>Your first class<a class="headerlink" href="#your-first-class" title="Permalink to this headline">¶</a></h2>
+<p id="index-0">Before writing your first class, you should know the syntax. We define a class in the following way.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">nameoftheclass</span><span class="p">(</span><span class="n">parent_class</span><span class="p">):</span>
+    <span class="n">statement1</span>
+    <span class="n">statement2</span>
+    <span class="n">statement3</span>
+</pre></div>
+</div>
+<p>In the statements you can write any Python statement, you can define functions (which we call methods of a class).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">a</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="gp">... </span>    <span class="n">b</span> <span class="o">=</span> <span class="mi">88</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span>
+<span class="go">&lt;__main__.MyClass instance at 0xb7c8aa6c&gt;</span>
+</pre></div>
+</div>
+<p id="index-1">In the above example you can see first we are declaring a class called MyClass, writing some random statements inside that class. After the class definition, we are creating an <em>object</em> p of the <em>class</em> MyClass. If you do a dir on that</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="go">[&#39;__doc__&#39;, &#39;__module__&#39;, &#39;a&#39;, &#39;b&#39;]</span>
+</pre></div>
+</div>
+<p>you can see the variables <em>a</em> and <em>b</em> inside it.</p>
+</div>
+<div class="section" id="init-method">
+<span id="index-2"></span><h2>__init__ method<a class="headerlink" href="#init-method" title="Permalink to this headline">¶</a></h2>
+<p>__init__ is a special method in Python classes, it is the constructor method for a class. In the following example you can see how to use it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a ```Student``` object with the given name, branch and year.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">branch</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="n">branch</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">year</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A student object is created.&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">print_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints the details of the student.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Branch:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Year:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>__init__ is called when ever an object of the class is constructed. That means
+when ever we will create a student object we will see the message “A student
+object is created” in the prompt. You can see the first argument to the method
+is <em>self</em>. It is a special variable which points to the current object (like
+<cite>this</cite> in C++). The object is passed implicitly to every method available in
+it, but we have to get it explicitly in every method while writing the
+methods. Example shown below. Remember to declare all the possible attributes
+in the <em>__init__</em> method itself. Even if you are not using them right away,
+you can always assign them as <em>None</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; std1 = Student()
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: __init__() takes exactly 4 arguments (1 given)
+&gt;&gt;&gt; std1 = Student(&#39;Kushal&#39;,&#39;CSE&#39;,&#39;2005&#39;)
+A student object is created
+</pre></div>
+</div>
+<p>In this example at first we tried to create a Student object without passing any argument and Python interpreter complained that it takes exactly 4 arguments but received only one (self). Then we created an object with proper argument values and from the message printed, one can easily understand that <em>__init__</em> method was called as the constructor method.</p>
+<p>Now we are going to call <em>print_details()</em> method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">std1</span><span class="o">.</span><span class="n">print_details</span><span class="p">()</span>
+<span class="go">Name: Kushal</span>
+<span class="go">Branch: CSE</span>
+<span class="go">Year: 2005</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>__init__</em> is pronounced as dunder init, all functions with double underscore in the front and end
+is pronounced in this way. Example: dunder str or dunder repr.</p>
+</div>
+</div>
+<div class="section" id="unique-class-level-variables">
+<h2>Unique class level variables<a class="headerlink" href="#unique-class-level-variables" title="Permalink to this headline">¶</a></h2>
+<p>All the values stored in the instance via <cite>self.</cite> are data inside of an
+instance. Each instance of the class can have different values for given
+attribute (anything we access via . is also known as attribute). But, when we
+define an variable in the class level, that is same accross all objects. In
+the following example, we define a class called <cite>Point</cite>, and we also have a
+special class level variable called <cite>style</cite> in it. After we create 2 objects
+of type <cite>Point</cite>, we can see that both has the same <cite>class</cite> attribute <cite>style</cite>
+and changing in the class level also changes in the all objects.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&quot;fun&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Object </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> has style value= </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">style</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">Point</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;work&quot;</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Object </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> has style value= </span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">style</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Object</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Point</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10de37210</span><span class="o">&gt;</span> <span class="n">has</span> <span class="n">style</span> <span class="n">value</span><span class="o">=</span> <span class="n">fun</span>
+<span class="n">Object</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Point</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10de0bb50</span><span class="o">&gt;</span> <span class="n">has</span> <span class="n">style</span> <span class="n">value</span><span class="o">=</span> <span class="n">fun</span>
+<span class="n">Object</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Point</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10de37210</span><span class="o">&gt;</span> <span class="n">has</span> <span class="n">style</span> <span class="n">value</span><span class="o">=</span> <span class="n">work</span>
+<span class="n">Object</span> <span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Point</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10de0bb50</span><span class="o">&gt;</span> <span class="n">has</span> <span class="n">style</span> <span class="n">value</span><span class="o">=</span> <span class="n">work</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="repr-method">
+<h2>__repr__ method<a class="headerlink" href="#repr-method" title="Permalink to this headline">¶</a></h2>
+<p><cite>__repr__</cite> is a special method used by the <cite>print</cite> function to show the
+representation of an object. We can use the same to make our <cite>Point</cite> object
+look better as print output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+    <span class="n">style</span><span class="o">=</span><span class="s2">&quot;fun&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;Point x=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2"> y=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="p">[</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Object </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Object</span> <span class="o">&lt;</span><span class="n">Point</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="o">&gt;</span>
+<span class="n">Object</span> <span class="o">&lt;</span><span class="n">Point</span> <span class="n">x</span><span class="o">=</span><span class="mi">100</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inheritance">
+<span id="index-3"></span><h2>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<p>In general we human beings always know about inheritance. In programming it is
+almost the same. When a class inherits another class it inherits all features
+(like variables and methods) of the parent class. This helps in reusing codes.</p>
+<p>In the next example we first create a class called Person and create two
+sub-classes Student and Teacher. As both of the classes are inherited from
+Person class they will have all methods of Person and will have new methods and
+variables for their own purpose.</p>
+<div class="section" id="student-teacher-py">
+<h3>student_teacher.py<a class="headerlink" href="#student-teacher-py" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a ```Person``` object with given name.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns a string containing name of the person&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a ```Student``` object, takes 3 arguments, name, branch, year.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">branch</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="n">branch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">year</span>
+
+    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns a string containing student&#39;s details.&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> studies </span><span class="si">%s</span><span class="s2"> and is in </span><span class="si">%s</span><span class="s2"> year.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Teacher</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a ```Teacher``` object, takes a list of strings (list of papers) as</span>
+<span class="sd">    argument.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">papers</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="n">papers</span>
+
+    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> teaches </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">papers</span><span class="p">))</span>
+
+
+<span class="n">person1</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;Sachin&#39;</span><span class="p">)</span>
+<span class="n">student1</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s1">&#39;Kushal&#39;</span><span class="p">,</span> <span class="s1">&#39;CSE&#39;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">)</span>
+<span class="n">teacher1</span> <span class="o">=</span> <span class="n">Teacher</span><span class="p">(</span><span class="s1">&#39;Prashad&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C++&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">person1</span><span class="o">.</span><span class="n">get_details</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">student1</span><span class="o">.</span><span class="n">get_details</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">teacher1</span><span class="o">.</span><span class="n">get_details</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./student_teacher.py
+Sachin
+Kushal studies CSE and is in 2005 year.
+Prashad teaches C,C++
+</pre></div>
+</div>
+<p>In this example you can see how we called the __init__ method of the parent
+class using the <cite>super()</cite> in both Student and Teacher classes’ __init__ method.
+We also reimplemented <em>get_details()</em> method of Person class in both Student
+and Teacher class. So, when we are calling <em>get_details()</em> method on the
+teacher1 object it returns based on the object itself (which is of teacher
+class) and when we call <em>get_details()</em> on the student1 or person1 object it
+returns based on <em>get_details()</em> method implemented in it’s own class.</p>
+<p>When a class inherites another class, the child class is also known as the
+instance of the parent class. Here is an example based on the above class.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`Python</span>
+<span class="pre">isinstance(student1,</span> <span class="pre">Person)</span>
+<span class="pre">True</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="multiple-inheritance">
+<h2>Multiple Inheritance<a class="headerlink" href="#multiple-inheritance" title="Permalink to this headline">¶</a></h2>
+<p>One class can inherit more than one classes. It gets access to all methods and variables of the parent classes. The general syntax is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">(</span><span class="n">Parentclass1</span><span class="p">,</span> <span class="n">Parentclass2</span><span class="p">,</span><span class="o">...</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Parentclass1</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">Parentclass2</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="o">...</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="encapsulation-in-python">
+<h2>Encapsulation in Python<a class="headerlink" href="#encapsulation-in-python" title="Permalink to this headline">¶</a></h2>
+<p>Encapsulation is a way to provide details on how a data can be accessed. In
+Python we have encapsulation as a programming style, which is different than
+many other programming languages. For example, we use a leading <cite>_</cite> before any
+variable name to tell that it is private. This way if the developer wants, they
+can have a different variable with similar name in the child class.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a ```Person``` object with given name.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="s2">&quot;Returns a string containing name of the person&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+
+<span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">Child</span><span class="p">(</span><span class="s2">&quot;kushal&quot;</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">kushal</span>
+</pre></div>
+</div>
+<p>You can see that we can still access the <cite>_name</cite> attribute. But, we are letting
+the developer know that <cite>_name</cite> is a private attribute. If you want to make
+sure that the attribute can not be accessed directly in the child class, you
+can use <cite>__</cite> in front of the attribute name. It uses something called <cite>name
+mangling &lt;https://docs.python.org/3/tutorial/classes.html#private-variables&gt;_</cite>.</p>
+</div>
+<div class="section" id="deleting-an-object">
+<h2>Deleting an object<a class="headerlink" href="#deleting-an-object" title="Permalink to this headline">¶</a></h2>
+<p>As we already know how to create an object, now we are going to see how to delete an Python object. We use <em>del</em> for this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt; s = &quot;I love you&quot;
+&gt;&gt;&gt; del s
+&gt;&gt;&gt; s
+Traceback (most recent call last):
+File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+NameError: name &#39;s&#39; is not defined
+</pre></div>
+</div>
+<p><em>del</em> actually decreases reference count by one. When the reference count of an object becomes zero the garbage collector will delete that object.</p>
+</div>
+<div class="section" id="getters-and-setters-in-python">
+<h2>Getters and setters in Python<a class="headerlink" href="#getters-and-setters-in-python" title="Permalink to this headline">¶</a></h2>
+<p>One simple answer, don’t. If you are coming from other languages (read Java), you will be tempted
+to use getters or setters in all your classes. Please don’t. Just use the attributes directly.
+The following shows a direct example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">std</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Kushal Das&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">std</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="go">Kushal Das</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">std</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Python&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">std</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="go">Python</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="properties">
+<span id="index-4"></span><h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>If you want more fine tuned control over data attribute access, then you can use properties.
+In the following example of a bank account, we will make sure that no one can set the
+money value to negative and also a property called <em>inr</em> will give us the INR values of
+the dollars in the account.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="k">class</span> <span class="nc">Account</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The Account class,</span>
+<span class="sd">    The amount is in dollars.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__amt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">rate</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">amount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;The amount of money in the account&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__amt</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">inr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Gives the money in INR value.&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__amt</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate</span>
+
+    <span class="nd">@amount</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">amount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorry, no negative amount in the account.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__amt</span> <span class="o">=</span> <span class="n">value</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">Account</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mi">61</span><span class="p">)</span> <span class="c1"># Based on today&#39;s value of INR :(</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dollar amount:&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In INR:&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">inr</span><span class="p">)</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">amount</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dollar amount:&quot;</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python property.py
+Dollar amount: 20
+In INR: 1220
+Sorry, no negative amount in the account.
+Dollar amount: 20
+</pre></div>
+</div>
+</div>
+<div class="section" id="special-dunder-methods-in-classes">
+<h2>Special dunder methods in classes<a class="headerlink" href="#special-dunder-methods-in-classes" title="Permalink to this headline">¶</a></h2>
+<p>Below, we will see some special dunder methods (the methods which have double
+underscores <cite>__</cite> before and after the name, example: <cite>__init__</cite>, we call it
+<em>dunder init</em>).</p>
+<div class="section" id="len-method">
+<h3>__len__ method<a class="headerlink" href="#len-method" title="Permalink to this headline">¶</a></h3>
+<p>Dunder len is a method used by the <em>len</em> function to know the length of any
+iterator or similar objects. It should return an Integer. The <em>len</em> function
+verifies if the returned value is Integer or not.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+    <span class="s2">&quot;Example class for __len__&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">()</span>
+<span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Length of the f object is </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 code/lenexample.py
+Length of the f object is 5
+</pre></div>
+</div>
+</div>
+<div class="section" id="contains-method">
+<h3>__contains__ method<a class="headerlink" href="#contains-method" title="Permalink to this headline">¶</a></h3>
+<p>This method helps us to use <cite>in</cite> with our objects. For example, if we want to
+match <cite>“kushal” in studnet1</cite> to be <cite>True</cite>, we implement <cite>__contains__</cite> method
+in our class.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a ```Student``` object, takes 3 arguments, name, branch, year.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">branch</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="n">branch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">year</span>
+
+    <span class="k">def</span> <span class="nf">get_details</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns a string containing student&#39;s details.&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> studies </span><span class="si">%s</span><span class="s2"> and is in </span><span class="si">%s</span><span class="s2"> year.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">==</span> <span class="n">name</span>
+
+
+<span class="n">student1</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;kushal&quot;</span><span class="p">,</span> <span class="s2">&quot;cse&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;kushal&quot;</span> <span class="ow">in</span> <span class="n">student1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sachin&quot;</span> <span class="ow">in</span> <span class="n">student1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="new-method">
+<h3>__new__ method<a class="headerlink" href="#new-method" title="Permalink to this headline">¶</a></h3>
+<p><cite>__new__</cite> is a special method. When we create an instance of the class,
+internally this method gets called first, and then <cite>__init__</cite> gets called on
+the returned object. It takes the class as the first argument. In the following
+example, we are using our <cite>Point</cite> class again.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Point</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">Point</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span> <span class="n">y</span><span class="o">=</span><span class="mi">3</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-new-context-manager">
+<h2>Creating a new context manager<a class="headerlink" href="#creating-a-new-context-manager" title="Permalink to this headline">¶</a></h2>
+<p>Do you remember the <cite>with</cite> statement from the <cite>files</cite> chapter? Where we used a
+context manager to make sure that the file is closed after we are done? The
+same style is used in many places where we want the resources to be cleaned up
+after the work is done; sometimes we want to call some extra functions when we are
+done. We can write our own context manager in our classs using <cite>__enter__</cite> and
+<cite>__exit__</cite> methods.</p>
+<p>For example, we will create a new class called <cite>TimeLog</cite> which in turn will
+create a file called <cite>tmpdata.txt</cite> in the current directory to log the time
+this context manager is created and when it is done.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">class</span> <span class="nc">TimeLog</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fobj</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;tmpdata.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entering at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">tb</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fobj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Done at </span><span class="si">{</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fobj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fobj</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">with</span> <span class="n">TimeLog</span><span class="p">()</span> <span class="k">as</span> <span class="n">tl</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output in the <cite>tmpdata.txt</cite> file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Entering</span> <span class="n">at</span> <span class="mf">1590551277.323565</span>
+<span class="n">Done</span> <span class="n">at</span> <span class="mf">1590551277.3238761</span>
+</pre></div>
+</div>
+<p>Later in the book we will learn even simpler methods to create context managers.</p>
+</div>
+<div class="section" id="deep-down-inside">
+<h2>Deep down inside<a class="headerlink" href="#deep-down-inside" title="Permalink to this headline">¶</a></h2>
+<p>If we look inside of our class definitions, we will find a dictionary at the center.
+Let us look at it in details in the following example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">home</span><span class="p">,</span> <span class="n">sudo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">uid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gids</span> <span class="o">=</span> <span class="p">[</span><span class="n">gid</span><span class="p">,]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home</span> <span class="o">=</span> <span class="n">home</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sudo</span> <span class="o">=</span> <span class="n">sudo</span>
+
+    <span class="k">def</span> <span class="nf">can_sudo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sudo</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s2">&quot;kdas&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;/home/kdas&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+<span class="p">{</span><span class="s1">&#39;gids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">],</span>
+ <span class="s1">&#39;home&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/kdas&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;kdas&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;sudo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+ <span class="s1">&#39;uid&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>All the attributes we defined via <cite>self</cite> in the <cite>__init__</cite> method, are stored in
+the <cite>__dict__</cite> dictionary inside of each instance. When we try access any of
+these attributes, Python first looks at this dictionary of the object, and then
+also in the <cite>__dict__</cite> of the class itself.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">User</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+<span class="go">mappingproxy({&#39;__dict__&#39;: &lt;attribute &#39;__dict__&#39; of &#39;User&#39; objects&gt;,</span>
+<span class="go">              &#39;__doc__&#39;: None,</span>
+<span class="go">              &#39;__init__&#39;: &lt;function User.__init__ at 0x7fa8c6f1bd40&gt;,</span>
+<span class="go">              &#39;__module__&#39;: &#39;__main__&#39;,</span>
+<span class="go">              &#39;__weakref__&#39;: &lt;attribute &#39;__weakref__&#39; of &#39;User&#39; objects&gt;,</span>
+<span class="go">              &#39;can_sudo&#39;: &lt;function User.can_sudo at 0x7fa8c6f3e3b0&gt;})</span>
+</pre></div>
+</div>
+<p>When we try to access any attribute via the <cite>.</cite> operator, Python first checks the
+<cite>__getattribute__</cite> method to look at the <cite>__dict__</cite>. If the key can not be found,
+it tries to call the <cite>__getattr__</cite> method on the object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Magic</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;magic&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">attr</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now, if we try to use this <cite>Magic</cite> class, we can access any random attribute even if they don’t exist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>❯ python3 -i deepinsideobjects.py
+&gt;&gt;&gt; m = Magic()
+&gt;&gt;&gt; m.name
+&#39;magic&#39;
+&gt;&gt;&gt; m.what_is_this_magic
+&#39;WHAT_IS_THIS_MAGIC&#39;
+&gt;&gt;&gt; m.this
+&#39;THIS&#39;
+&gt;&gt;&gt; m.hello
+&#39;HELLO&#39;
+</pre></div>
+</div>
+<p>Using the same approach we took, to access the data stored inside
+another object of our class, we can also implement the <cite>__setattr__</cite> method,
+which is used to set a value to any attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">User</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">gid</span><span class="p">,</span> <span class="n">home</span><span class="p">,</span> <span class="n">sudo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_internal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="n">uid</span><span class="p">,</span> <span class="s2">&quot;gids&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">gid</span><span class="p">,],</span> <span class="s2">&quot;home&quot;</span><span class="p">:</span> <span class="n">home</span><span class="p">,</span> <span class="s2">&quot;sudo&quot;</span><span class="p">:</span> <span class="n">sudo</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">can_sudo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internal</span><span class="p">[</span><span class="s2">&quot;sudo&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accessing attr: </span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internal</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting attribute </span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internal</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="s2">&quot;kdas&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;/home/kdas&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When we try to access any attribute of the object <cite>u</cite>, we can see the following.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>❯ python3 -i deepinsideobjects.py
+&gt;&gt;&gt; u.name
+Accessing attr: name
+&#39;kdas&#39;
+&gt;&gt;&gt; u.uid
+Accessing attr: uid
+1000
+&gt;&gt;&gt; u.can_sudo()
+True
+</pre></div>
+</div>
+<p>There is also <cite>__delattr__</cite> method to delete any attribute of an instance. Feel
+free to add it to the class above and see how it behaves.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/pym.png" alt="Logo"/>
+  </a>
+</p>
+<p>
+<iframe src="http://ghbtns.com/github-btn.html?user=kushaldas&repo=pym&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  pym is a book to learn Python.
+  It targets people who are completely
+  new to the language.
+</p>
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '5225487b613f5d4eaf000117');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d2fuc4clr7gvcn.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Class</a><ul>
+<li><a class="reference internal" href="#your-first-class">Your first class</a></li>
+<li><a class="reference internal" href="#init-method">__init__ method</a></li>
+<li><a class="reference internal" href="#unique-class-level-variables">Unique class level variables</a></li>
+<li><a class="reference internal" href="#repr-method">__repr__ method</a></li>
+<li><a class="reference internal" href="#inheritance">Inheritance</a><ul>
+<li><a class="reference internal" href="#student-teacher-py">student_teacher.py</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multiple-inheritance">Multiple Inheritance</a></li>
+<li><a class="reference internal" href="#encapsulation-in-python">Encapsulation in Python</a></li>
+<li><a class="reference internal" href="#deleting-an-object">Deleting an object</a></li>
+<li><a class="reference internal" href="#getters-and-setters-in-python">Getters and setters in Python</a></li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
+<li><a class="reference internal" href="#special-dunder-methods-in-classes">Special dunder methods in classes</a><ul>
+<li><a class="reference internal" href="#len-method">__len__ method</a></li>
+<li><a class="reference internal" href="#contains-method">__contains__ method</a></li>
+<li><a class="reference internal" href="#new-method">__new__ method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-a-new-context-manager">Creating a new context manager</a></li>
+<li><a class="reference internal" href="#deep-down-inside">Deep down inside</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="exceptions.html"
+                          title="Previous page">&larr; Exceptions</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="modules.html"
+                          title="Next page">&rarr; Modules</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/classes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modules.html" title="Modules"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="exceptions.html" title="Exceptions"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Class</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, ishan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,466 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operators and expressions &#8212; demo1 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="If-else , the control flow" href="ifelse.html" />
+    <link rel="prev" title="Variables and Datatypes" href="variablesanddatatypes.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ifelse.html" title="If-else , the control flow"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="variablesanddatatypes.html" title="Variables and Datatypes"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Operators and expressions</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="operators-and-expressions">
+<h1>Operators and expressions<a class="headerlink" href="#operators-and-expressions" title="Permalink to this headline">¶</a></h1>
+<p>In Python most of the lines you will write will be expressions. Expressions are made of operators and operands. An expression is like <em>2 + 3</em> .</p>
+<div class="section" id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h2>
+<p>Operators are the symbols which tells the Python interpreter to do some mathematical or logical operation. Few basic examples of mathematical operators are given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">23</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="go">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">22.0</span> <span class="o">/</span> <span class="mi">12</span>
+<span class="go">1.8333333333333333</span>
+</pre></div>
+</div>
+<p>To get floating result you need to the division using any of operand as floating number. To do modulo operation use % operator</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">14</span> <span class="o">%</span> <span class="mi">3</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-integer-arithmetic">
+<h2>Example of integer arithmetic<a class="headerlink" href="#example-of-integer-arithmetic" title="Permalink to this headline">¶</a></h2>
+<p>The code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter days: &quot;</span><span class="p">))</span>
+<span class="n">months</span> <span class="o">=</span> <span class="n">days</span> <span class="o">/</span> <span class="mi">30</span>
+<span class="n">days</span> <span class="o">=</span> <span class="n">days</span> <span class="o">%</span> <span class="mi">30</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Months = </span><span class="si">%d</span><span class="s2"> Days = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">months</span><span class="p">,</span> <span class="n">days</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./integer.py
+Enter days: 265
+Months = 8 Days = 25
+</pre></div>
+</div>
+<p>In the first line I am taking the input of days, then getting the months and days and at last printing them. You can do it in a easy way</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter days: &quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Months = </span><span class="si">%d</span><span class="s2"> Days = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">divmod</span><span class="p">(</span><span class="n">days</span><span class="p">,</span> <span class="mi">30</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>The divmod(num1, num2) function returns two values , first is the division of num1 and num2 and in second the modulo of num1 and num2.</p>
+</div>
+<div class="section" id="relational-operators">
+<h2>Relational Operators<a class="headerlink" href="#relational-operators" title="Permalink to this headline">¶</a></h2>
+<p>You can use the following operators as relational operators</p>
+<div class="section" id="id1">
+<h3>Relational Operators<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Operator</p></td>
+<td><p>Meaning</p></td>
+</tr>
+<tr class="row-even"><td><p>&lt;</p></td>
+<td><p>Is less than</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;=</p></td>
+<td><p>Is less than or equal to</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt;</p></td>
+<td><p>Is greater than</p></td>
+</tr>
+<tr class="row-odd"><td><p>&gt;=</p></td>
+<td><p>Is greater than or equal to</p></td>
+</tr>
+<tr class="row-even"><td><p>==</p></td>
+<td><p>Is equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p>!=</p></td>
+<td><p>Is not equal to</p></td>
+</tr>
+</tbody>
+</table>
+<p>Some examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">34</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">23</span> <span class="o">==</span> <span class="mi">45</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">34</span> <span class="o">!=</span> <span class="mi">323</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p><em>//</em> operator gives the floor division result</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">4.0</span> <span class="o">//</span> <span class="mi">3</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">4.0</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="go">1.3333333333333333</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="logical-operators">
+<h2>Logical Operators<a class="headerlink" href="#logical-operators" title="Permalink to this headline">¶</a></h2>
+<p>To do logical AND , OR we use <em>and</em> ,*or* keywords. <em>x and y</em> returns <em>False</em> if <em>x</em> is <em>False</em> else it returns evaluation of <em>y</em>. If <em>x</em> is <em>True</em>, it returns <em>True</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="ow">and</span> <span class="mi">4</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">4</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="mi">4</span>
+<span class="go">-1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="ow">or</span> <span class="mi">4</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="shorthand-operator">
+<h2>Shorthand Operator<a class="headerlink" href="#shorthand-operator" title="Permalink to this headline">¶</a></h2>
+<p><em>x op = expression</em> is the syntax for shorthand operators. It will be evaluated like <em>x = x op expression</em> , Few examples are</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+=</span> <span class="mi">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">/=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">8.333333333333334</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">26</span> <span class="o">*</span> <span class="mi">32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">840.3333333333334</span>
+</pre></div>
+</div>
+<p>shorthand.py example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">*=</span> <span class="n">a</span>
+</pre></div>
+</div>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./shorthand.py
+2
+4
+16
+</pre></div>
+</div>
+</div>
+<div class="section" id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this headline">¶</a></h2>
+<p>Generally while writing expressions we put spaces before and after every operator so that the code becomes clearer to read, like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">234</span> <span class="o">*</span> <span class="p">(</span><span class="mi">45</span> <span class="o">-</span> <span class="mf">56.0</span> <span class="o">/</span> <span class="mi">34</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>One example code used to show expressions</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="p">(</span><span class="n">b</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;X = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Y = &quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Z = &quot;</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./evaluationexp.py
+X =  10
+Y =  7
+Z =  4
+</pre></div>
+</div>
+<p>At first <em>x</em> is being calculated. The steps are like this</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">9</span> <span class="o">-</span> <span class="mi">12</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">1</span>
+<span class="mi">9</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="mi">9</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="mi">11</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="mi">10</span>
+</pre></div>
+</div>
+<p>Now for <em>y</em> and <em>z</em> we have parentheses, so the expressions evaluated in different way. Do the calculation yourself to check them.</p>
+</div>
+<div class="section" id="type-conversions">
+<h2>Type Conversions<a class="headerlink" href="#type-conversions" title="Permalink to this headline">¶</a></h2>
+<p>We have to do the type conversions manually. Like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="n">value</span>
+<span class="nb">int</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">integer</span> <span class="n">value</span>
+<span class="nb">str</span><span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">string</span> <span class="n">representation</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">8.126768</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="s1">&#39;8.126768&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="evaluateequ-py">
+<h2>evaluateequ.py<a class="headerlink" href="#evaluateequ-py" title="Permalink to this headline">¶</a></h2>
+<p>This is a program to evaluate 1/x+1/(x+1)+1/(x+2)+ … +1/n series upto n, in our case x = 1 and n =10</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">i</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%2d</span><span class="s2"> </span><span class="si">%6.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span> <span class="p">,</span> <span class="nb">sum</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./evaluateequ.py
+1 1.0000
+2 1.5000
+3 1.8333
+4 2.0833
+5 2.2833
+6 2.4500
+7 2.5929
+8 2.7179
+9 2.8290
+10 2.9290
+</pre></div>
+</div>
+<p>In the line <em>sum += 1.0 / i</em> what is actually happening is <em>sum = sum + 1.0 / i</em>.</p>
+</div>
+<div class="section" id="quadraticequation-py">
+<h2>quadraticequation.py<a class="headerlink" href="#quadraticequation-py" title="Permalink to this headline">¶</a></h2>
+<p>This is a program to evaluate the quadratic equation</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter value of a: &quot;</span><span class="p">))</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter value of b: &quot;</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter value of c: &quot;</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span> <span class="o">*</span> <span class="n">b</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">c</span>
+<span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ROOTS are imaginary&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">root1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="n">root2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">b</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Root 1 = &quot;</span><span class="p">,</span> <span class="n">root1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Root 2 = &quot;</span><span class="p">,</span> <span class="n">root2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="salesmansalary-py">
+<h2>salesmansalary.py<a class="headerlink" href="#salesmansalary-py" title="Permalink to this headline">¶</a></h2>
+<p>In this example we are going to calculate the salary of a camera salesman. His basic salary is 1500, for every camera he will sell he will get 200 and the commission on the month’s sale is 2 %. The input will be number of cameras sold and total price of the cameras.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="n">basic_salary</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">bonus_rate</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">commision_rate</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">numberofcamera</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the number of inputs sold: &quot;</span><span class="p">))</span>
+<span class="n">price</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the total prices: &quot;</span><span class="p">))</span>
+<span class="n">bonus</span> <span class="o">=</span> <span class="p">(</span><span class="n">bonus_rate</span> <span class="o">*</span> <span class="n">numberofcamera</span><span class="p">)</span>
+<span class="n">commision</span> <span class="o">=</span> <span class="p">(</span><span class="n">commision_rate</span> <span class="o">*</span> <span class="n">numberofcamera</span> <span class="o">*</span> <span class="n">price</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bonus        = </span><span class="si">%6.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">bonus</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Commision    = </span><span class="si">%6.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">commision</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gross salary = </span><span class="si">%6.2f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">basic_salary</span> <span class="o">+</span> <span class="n">bonus</span> <span class="o">+</span> <span class="n">commision</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./salesmansalary.py
+Enter the number of inputs sold: 5
+Enter the total prices: 20450
+Bonus        = 1000.00
+Commision    = 2045.00
+Gross salary = 4545.00
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/pym.png" alt="Logo"/>
+  </a>
+</p>
+<p>
+<iframe src="http://ghbtns.com/github-btn.html?user=kushaldas&repo=pym&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  pym is a book to learn Python.
+  It targets people who are completely
+  new to the language.
+</p>
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '5225487b613f5d4eaf000117');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d2fuc4clr7gvcn.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Operators and expressions</a><ul>
+<li><a class="reference internal" href="#operators">Operators</a></li>
+<li><a class="reference internal" href="#example-of-integer-arithmetic">Example of integer arithmetic</a></li>
+<li><a class="reference internal" href="#relational-operators">Relational Operators</a><ul>
+<li><a class="reference internal" href="#id1">Relational Operators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#logical-operators">Logical Operators</a></li>
+<li><a class="reference internal" href="#shorthand-operator">Shorthand Operator</a></li>
+<li><a class="reference internal" href="#expressions">Expressions</a></li>
+<li><a class="reference internal" href="#type-conversions">Type Conversions</a></li>
+<li><a class="reference internal" href="#evaluateequ-py">evaluateequ.py</a></li>
+<li><a class="reference internal" href="#quadraticequation-py">quadraticequation.py</a></li>
+<li><a class="reference internal" href="#salesmansalary-py">salesmansalary.py</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="variablesanddatatypes.html"
+                          title="Previous page">&larr; Variables and Datatypes</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="ifelse.html"
+                          title="Next page">&rarr; If-else , the control flow</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/operatorsexpressions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ifelse.html" title="If-else , the control flow"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="variablesanddatatypes.html" title="Variables and Datatypes"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Operators and expressions</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, ishan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

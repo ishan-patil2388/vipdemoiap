@@ -1,0 +1,450 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type hinting and annotations &#8212; demo1 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Simple testing in Python" href="testing.html" />
+    <link rel="prev" title="Virtualenv" href="virtualenv.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="testing.html" title="Simple testing in Python"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="virtualenv.html" title="Virtualenv"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Type hinting and annotations</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="type-hinting-and-annotations">
+<h1>Type hinting and annotations<a class="headerlink" href="#type-hinting-and-annotations" title="Permalink to this headline">¶</a></h1>
+<p>This is one of the new feature of the language. We can do the similar kind of
+work in Python2 also, but with different syntax. Please remember that Python
+will stay as a dynamically typed language, this type hinting does not effect
+your code anyway.</p>
+<p>The major benefit of having type hints in your codebase is about future
+maintenance of the codebase. When a new developer will try to contribute to
+your project, having type hints will save a lot of time for that new person.
+It can also help to detect some of the runtime issues we see due to passing
+of wrong variable types in different function calls.</p>
+<div class="section" id="first-example-of-type-annotation">
+<h2>First example of type annotation<a class="headerlink" href="#first-example-of-type-annotation" title="Permalink to this headline">¶</a></h2>
+<p>Let us start with a simple example, adding of two integers.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>Now, the above example will work for any object which supports <em>+</em> operator.
+But, we want to specify that it is expecting only Integers as parameters, and
+the function call will return another Integer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>You can see that the return type of the function call is defined after <em>-&gt;</em>.
+We can do the same in Python2 using a comment (before any docstring).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># type: (int, int) -&gt; int</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-mypy-and-more-examples">
+<h2>Using mypy and more examples<a class="headerlink" href="#using-mypy-and-more-examples" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://mypy.rtfd.io">Mypy</a> is a static type checker written for Python. If we use the type
+annotations as explained above, mypy can help by finding common problems in
+our code. You can use mypy in various ways in your development workflow, may
+be in CI as a proper test.</p>
+<div class="section" id="installing-mypy">
+<h3>Installing mypy<a class="headerlink" href="#installing-mypy" title="Permalink to this headline">¶</a></h3>
+<p>We can install mypy inside of a virtual environment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pipenv install mypy
+Installing mypy…
+Looking in indexes: https://pypi.python.org/simple
+Collecting mypy
+Downloading https://files.pythonhosted.org/packages/e2/3f/e20e2544b35e862fbed4e26a89e3d857007c5bd32abc019ef21c02aecd98/mypy-0.600-py3-none-any.whl (1.3MB)
+Collecting typed-ast&lt;1.2.0,&gt;=1.1.0 (from mypy)
+Downloading https://files.pythonhosted.org/packages/5b/4e/79e873aa89b8038ca6474c00afe96f9468973b604e7f737cb82697a680c0/typed_ast-1.1.0-cp35-cp35m-manylinux1_x86_64.whl (724kB)
+Installing collected packages: typed-ast, mypy
+Successfully installed mypy-0.600 typed-ast-1.1.0
+
+Adding mypy to Pipfile&#39;s [packages]…
+Pipfile.lock (627f99) out of date, updating to (67e074)…
+Locking [dev-packages] dependencies…
+Locking [packages] dependencies…
+Updated Pipfile.lock (67e074)!
+Installing dependencies from Pipfile.lock (67e074)…
+🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 7/7 — 00:00:01
+To activate this project&#39;s virtualenv, run the following:
+$ pipenv shell
+</pre></div>
+</div>
+</div>
+<div class="section" id="our-example-code">
+<h3>Our example code<a class="headerlink" href="#our-example-code" title="Permalink to this headline">¶</a></h3>
+<p>We will be working on the following example code. This isn’t much useful,
+but we can use this to learn about type annotations and mypy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">branch</span><span class="p">,</span> <span class="n">roll</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="n">batch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="n">branch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roll</span> <span class="o">=</span> <span class="n">roll</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">semester</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">is_passed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;To find if the student has pass the exam in the current semester&quot;</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">papers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">34</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+
+
+    <span class="k">def</span> <span class="nf">total_score</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns the total score of the student&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">papers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span>
+
+        <span class="k">return</span> <span class="n">total</span>
+
+
+<span class="n">std1</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Kushal&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;cse&quot;</span><span class="p">,</span> <span class="s2">&quot;123&quot;</span><span class="p">)</span>
+<span class="n">std2</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Sayan&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;cse&quot;</span><span class="p">,</span> <span class="mi">121</span><span class="p">)</span>
+<span class="n">std3</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Anwesha&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;law&quot;</span><span class="p">,</span> <span class="mi">122</span><span class="p">)</span>
+
+<span class="n">std1</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">,</span> <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">82</span><span class="p">,</span> <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="mi">77</span><span class="p">}</span>
+<span class="n">std2</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">,</span> <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="s2">&quot;78&quot;</span><span class="p">}</span>
+<span class="n">std3</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">82</span><span class="p">,</span> <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">87</span><span class="p">,</span> <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="mi">77</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">std</span> <span class="ow">in</span> <span class="p">[</span><span class="n">std1</span><span class="p">,</span> <span class="n">std2</span><span class="p">,</span> <span class="n">std3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Passed: </span><span class="si">{0}</span><span class="s2">. The toral score of </span><span class="si">{1}</span><span class="s2"> is </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std</span><span class="o">.</span><span class="n">is_passed</span><span class="p">(),</span> <span class="n">std</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">std</span><span class="o">.</span><span class="n">total_score</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>You may find some errors in the code, but in case of a large codebase we can
+not detect the similar issues unless we see the runtime errors.</p>
+</div>
+<div class="section" id="using-mypy">
+<h3>Using mypy<a class="headerlink" href="#using-mypy" title="Permalink to this headline">¶</a></h3>
+<p>We can just call mypy on our source file, I named it as <em>students2.py</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mypy studets2.py
+</pre></div>
+</div>
+</div>
+<div class="section" id="enabling-the-first-few-type-annotations">
+<h3>Enabling the first few type annotations<a class="headerlink" href="#enabling-the-first-few-type-annotations" title="Permalink to this headline">¶</a></h3>
+<p>We will add some type annotations to the <em>__init__</em> method. For reducing the
+code length, I am only showing the changed code below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">roll</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="n">batch</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="n">branch</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">roll</span> <span class="o">=</span> <span class="n">roll</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">semester</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mypy students2.py
+students2.py:11: error: Need type annotation for variable
+students2.py:31: error: Argument 4 to &quot;Student&quot; has incompatible type &quot;str&quot;; expected &quot;int&quot;
+</pre></div>
+</div>
+<p>You can see mypy is complaining about variable which does not have type
+annotations, and also found that in line 31, as argument 4 we are passing
+<em>str</em>, where as we were supposed to send in an Integer for the rull number.
+Let us fix these.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+
+<span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">roll</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="n">batch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">branch</span> <span class="o">=</span> <span class="n">branch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">roll</span> <span class="o">=</span> <span class="n">roll</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">semester</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">papers</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">is_passed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="s2">&quot;To find if the student has pass the exam in the current semester&quot;</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">papers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="mi">34</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+
+
+    <span class="k">def</span> <span class="nf">total_score</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="s2">&quot;Returns the total score of the student&quot;</span>
+        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">papers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span>
+
+        <span class="k">return</span> <span class="n">total</span>
+
+
+<span class="n">std1</span><span class="p">:</span> <span class="n">Student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Kushal&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;cse&quot;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>
+<span class="n">std2</span><span class="p">:</span> <span class="n">Student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Sayan&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;cse&quot;</span><span class="p">,</span> <span class="mi">121</span><span class="p">)</span>
+<span class="n">std3</span><span class="p">:</span> <span class="n">Student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Anwesha&quot;</span><span class="p">,</span> <span class="mi">2005</span><span class="p">,</span> <span class="s2">&quot;law&quot;</span><span class="p">,</span> <span class="mi">122</span><span class="p">)</span>
+
+<span class="n">std1</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">,</span> <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">82</span><span class="p">,</span> <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="mi">77</span><span class="p">}</span>
+<span class="n">std2</span><span class="p">:</span> <span class="n">Student</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">,</span> <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">}</span>
+<span class="n">std3</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;english&quot;</span><span class="p">:</span> <span class="mi">82</span><span class="p">,</span> <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="mi">87</span><span class="p">,</span> <span class="s2">&quot;science&quot;</span><span class="p">:</span> <span class="mi">77</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">std</span> <span class="ow">in</span> <span class="p">[</span><span class="n">std1</span><span class="p">,</span> <span class="n">std2</span><span class="p">,</span> <span class="n">std3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Passed: </span><span class="si">{0}</span><span class="s2">. The toral score of </span><span class="si">{1}</span><span class="s2"> is </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std</span><span class="o">.</span><span class="n">is_passed</span><span class="p">(),</span> <span class="n">std</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">std</span><span class="o">.</span><span class="n">total_score</span><span class="p">()))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mypy students2.py
+</pre></div>
+</div>
+<p>Now, it does not complain about any error. You can see that in line 1, we
+imported Dict from the typing module. And, then using the same we added the
+type annotation of the <em>self.paper</em> variable. We are saying that it is a
+dictionary which has string keys, and Integers as values. We also used our
+<em>Student</em> class as type of std1, std2, and std3 variables.</p>
+<p>Now let us say we by mistake assign a new list to the papers variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std1</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;English&quot;</span><span class="p">,</span> <span class="s2">&quot;Math&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Or maybe assigned a wrong kind of dictionary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">std2</span><span class="o">.</span><span class="n">papers</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Engish&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Math&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We can see what mypy says in these cases</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mypy students2.py
+students2.py:35: error: Incompatible types in assignment (expression has type List[str], variable has type Dict[str, int])
+students2.py:36: error: Dict entry 0 has incompatible type &quot;int&quot;: &quot;str&quot;
+students2.py:36: error: Dict entry 1 has incompatible type &quot;int&quot;: &quot;str&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="more-examples-of-type-annotations">
+<h2>More examples of type annotations<a class="headerlink" href="#more-examples-of-type-annotations" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">city</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">350</span> <span class="c1"># The city code, not a name</span>
+
+
+<span class="c1"># This function returns a Tuple of two values, a str and an int</span>
+<span class="k">def</span> <span class="nf">get_details</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="mi">5</span>
+
+<span class="c1"># The following is an example of Tuple unpacking</span>
+<span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="n">marks</span><span class="p">:</span> <span class="nb">int</span>
+<span class="n">name</span><span class="p">,</span> <span class="n">marks</span> <span class="o">=</span> <span class="n">get_details</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+
+<span class="n">print_all</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">print_all</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;kushal&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="c1"># alltypes.py:23: error: Argument 1 to &quot;print_all&quot; has incompatible type Dict[str, object]; expected Sequence[Any]</span>
+<span class="c1"># But running the code will give us no error with wrong output</span>
+
+<span class="k">def</span> <span class="nf">add_ten</span><span class="p">(</span><span class="n">number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">number</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">number</span> <span class="o">+</span> <span class="mi">10</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">42</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">add_ten</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">add_ten</span><span class="p">(</span><span class="mi">12</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You can learn more about types from <a class="reference external" href="https://www.python.org/dev/peps/pep-0484/">PEP 484</a>. The <a class="reference external" href="https://docs.python.org/3/library/typing.html">typing module</a> has detailed explanation and
+more examples about how to add type annotations in your codebase.</p>
+<p>You can also view <a class="reference external" href="https://www.youtube.com/watch?v=pMgmKJyWKn8">the talk</a>
+from Carl Meyer to learn about type checking in Python.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/pym.png" alt="Logo"/>
+  </a>
+</p>
+<p>
+<iframe src="http://ghbtns.com/github-btn.html?user=kushaldas&repo=pym&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  pym is a book to learn Python.
+  It targets people who are completely
+  new to the language.
+</p>
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '5225487b613f5d4eaf000117');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d2fuc4clr7gvcn.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Type hinting and annotations</a><ul>
+<li><a class="reference internal" href="#first-example-of-type-annotation">First example of type annotation</a></li>
+<li><a class="reference internal" href="#using-mypy-and-more-examples">Using mypy and more examples</a><ul>
+<li><a class="reference internal" href="#installing-mypy">Installing mypy</a></li>
+<li><a class="reference internal" href="#our-example-code">Our example code</a></li>
+<li><a class="reference internal" href="#using-mypy">Using mypy</a></li>
+<li><a class="reference internal" href="#enabling-the-first-few-type-annotations">Enabling the first few type annotations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#more-examples-of-type-annotations">More examples of type annotations</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="virtualenv.html"
+                          title="Previous page">&larr; Virtualenv</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="testing.html"
+                          title="Next page">&rarr; Simple testing in Python</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/typehinting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="testing.html" title="Simple testing in Python"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="virtualenv.html" title="Virtualenv"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Type hinting and annotations</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, ishan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

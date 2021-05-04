@@ -1,0 +1,429 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to Flask &#8212; demo1 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Simple GUI application development using PyperCard" href="pypercard.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pypercard.html" title="Simple GUI application development using PyperCard"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Introduction to Flask</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction-to-flask">
+<h1>Introduction to Flask<a class="headerlink" href="#introduction-to-flask" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-flask">
+<h2>What is flask?<a class="headerlink" href="#what-is-flask" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://flask.pocoo.org/">Flask</a> is a web framework. This means flask provides
+you with tools, libraries and technologies that allow you to build a web
+application. This web application can be some web pages, a blog, a wiki or go as
+big as a web-based calendar application or a commercial website.</p>
+<p>Flask is part of the categories of the micro-framework. Micro-framework are
+normally framework with little to no dependencies to external libraries. This
+has pros and cons. Pros would be that the framework is light, there are little
+dependency to update and watch for security bugs, cons is that some time you
+will have to do more work by yourself or increase yourself the list of
+dependencies by adding plugins.
+In the case of Flask, its dependencies are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://werkzeug.pocoo.org/">Werkzeug</a> a WSGI utility library</p></li>
+<li><p><a class="reference external" href="http://jinja.pocoo.org/">jinja2</a> which is its template engine</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>WSGI is basically a protocol defined so that Python application can
+communicate with a web-server and thus be used as web-application outside of
+CGI.</p>
+</div>
+</div>
+<div class="section" id="what-are-template-engines">
+<h2>What are template engines?<a class="headerlink" href="#what-are-template-engines" title="Permalink to this headline">¶</a></h2>
+<p>Have you ever built a website? Did you face the problem that to keep the style
+of the website consistent, you have had to write multiple times the same text?
+Did you ever tried to change the style of such website?</p>
+<p>If your website contains only few pages, changing its style will take you some
+time but is doable. However, if you have a lot of pages (for example the list of
+items you sell in your store), this task become overwhelming.</p>
+<p>Using templates you are able to set a basic layout for your pages and mention
+which element will change.
+This way you can define your header once and keep it consistent over all the pages of
+your website, and if you need to change your header, you will only have to
+update it in one place.</p>
+<p>Using a template engine will save you a lot of time when creating your
+application but also when updating and maintaining it.</p>
+</div>
+<div class="section" id="a-hello-world-application-in-flask">
+<h2>A “Hello world” application in flask<a class="headerlink" href="#a-hello-world-application-in-flask" title="Permalink to this headline">¶</a></h2>
+<p>We are going to perform a very basic application with flask.</p>
+<ul class="simple">
+<li><p>Create the structure of the project</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">hello_flask</span><span class="o">/</span><span class="p">{</span><span class="n">templates</span><span class="p">,</span><span class="n">static</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This is the basic structure of your web application:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tree hello_flask/
+hello_flask/
+|-- static
+`-- templates
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">templates</span></code> folder is the place where the templates will be put.
+The <code class="docutils literal notranslate"><span class="pre">static</span></code> folder is the place where any files (images, css, javascript)
+needed by the web application will be put.</p>
+<ul class="simple">
+<li><p>Create the application file</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">hello_flask</span>
+<span class="n">vim</span> <span class="n">hello_flask</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Put the following code in this file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="kn">import</span> <span class="nn">flask</span>
+
+
+<span class="c1"># Create the application.</span>
+<span class="n">APP</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="nd">@APP</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Displays the index page accessible at &#39;/&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">flask</span><span class="o">.</span><span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">APP</span><span class="o">.</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">APP</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create the template <code class="docutils literal notranslate"><span class="pre">index.html</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="n">templates</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>Put the following code in this file</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#39;en&#39;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello world!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
+        <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;static&#39;,</span>
+<span class="s">              filename=&#39;hello.css&#39;)}}&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+It works!
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the flask application</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">hello_flask</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Access <a class="reference external" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> this should simply
+show you in black on white the text “It works!” (see Figure below).</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="img/hello_flask_Index.png"><img alt="_images/hello_flask_Index.png" src="_images/hello_flask_Index.png" style="width: 600px;" /></a>
+</div>
+</div>
+<div class="section" id="using-arguments-in-flask">
+<h2>Using arguments in Flask<a class="headerlink" href="#using-arguments-in-flask" title="Permalink to this headline">¶</a></h2>
+<p>In this section we are going to see how to use a page according to the URL used
+by the user.</p>
+<p>For this we will update <code class="docutils literal notranslate"><span class="pre">hello_flask.py</span></code>.</p>
+<ul class="simple">
+<li><p>Add the following entry in <code class="docutils literal notranslate"><span class="pre">hello_flask.py</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@APP</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/hello/&lt;name&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Displays the page greats who ever comes to visit it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">flask</span><span class="o">.</span><span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;hello.html&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create the following template <code class="docutils literal notranslate"><span class="pre">hello.html</span></code></p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#39;en&#39;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
+          <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;static&#39;,</span>
+<span class="s">               filename=&#39;hello.css&#39;)}}&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+      Hello {{name}}
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the flask application</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">hello_flask</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Access <a class="reference external" href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a> this should simply
+show you in black on white the text “It works!”.</p>
+<p>Access <a class="reference external" href="http://127.0.0.1:5000/hello/you">http://127.0.0.1:5000/hello/you</a>
+this should return you the text “Hello you” (see Figure below).</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="img/hello_flask_hello.png"><img alt="_images/hello_flask_hello.png" src="_images/hello_flask_hello.png" style="width: 600px;" /></a>
+</div>
+<p>Whatever you put behind <code class="docutils literal notranslate"><span class="pre">/hello/</span></code> in the URL will be returned to you in the
+page.</p>
+<p>This is your first use of the template, we set up a variable <code class="docutils literal notranslate"><span class="pre">name</span></code> in
+<code class="docutils literal notranslate"><span class="pre">hello_flask.py</span></code> (see the return line of the function <code class="docutils literal notranslate"><span class="pre">hello</span></code>). This
+variable is then displayed in the page itself using the syntax <code class="docutils literal notranslate"><span class="pre">{{name}}</span></code>.</p>
+</div>
+<div class="section" id="additional-work">
+<h2>Additional work<a class="headerlink" href="#additional-work" title="Permalink to this headline">¶</a></h2>
+<p>Make use of the templates</p>
+<p>At the moment for each page we have created a template, this is actually bad
+practice, what we should do is create a <code class="docutils literal notranslate"><span class="pre">master</span></code> template and have each page
+use it.</p>
+<ul class="simple">
+<li><p>Create the template <code class="docutils literal notranslate"><span class="pre">master.html</span></code></p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#39;en&#39;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>{% block title %}{% endblock %} - Hello Flask!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">link</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span>
+       <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url_for(&#39;static&#39;,</span>
+<span class="s">                        filename=&#39;hello.css&#39;)}}&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+{% block body %}{% endblock %}
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Adjust the template <code class="docutils literal notranslate"><span class="pre">index.html</span></code></p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>{% extends &quot;master.html&quot; %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+It works!
+{% endblock %}
+</pre></div>
+</div>
+<p>As you can see, in the <code class="docutils literal notranslate"><span class="pre">master.html</span></code> template we have defined two sections,
+blocks which are named <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">body</span></code>.</p>
+<p>In the template <code class="docutils literal notranslate"><span class="pre">index.html</span></code> we say that this template relies on the template
+<code class="docutils literal notranslate"><span class="pre">master.html</span></code>, then we define the content to put in these two sections
+(blocks). In the first block <code class="docutils literal notranslate"><span class="pre">title</span></code> we say to put the word <cite>Home</cite>, In the
+second block we define what we want to have in the body of the page.</p>
+<ul class="simple">
+<li><p>As an exercise, transform the other template <code class="docutils literal notranslate"><span class="pre">hello.html</span></code> to use the
+<code class="docutils literal notranslate"><span class="pre">master.html</span></code> template as well.</p></li>
+<li><p>Add link to the front page from the hello page</p></li>
+</ul>
+<p>Flask uses a specific syntax to create links from a page to another. This is
+fact generates the link dynamically according to the decorator set to the
+function linked to. In addition it takes care of where the application is
+deployed.</p>
+<p>For example, if you website is deployed at: <code class="docutils literal notranslate"><span class="pre">/myapp/</span></code> flask will automatically
+happend <code class="docutils literal notranslate"><span class="pre">/myapp/</span></code> to all links without the need for you to specify it.</p>
+<p>To create a link in a template, flask relies on the function <code class="docutils literal notranslate"><span class="pre">url_for()</span></code>. This
+function takes as first argument the function you want to call (link to). The
+following arguments are the arguments of function itself (for example the
+argument <code class="docutils literal notranslate"><span class="pre">name</span></code> of the function <code class="docutils literal notranslate"><span class="pre">hello</span></code>.</p>
+<p>Adjust the template <code class="docutils literal notranslate"><span class="pre">hello.html</span></code> to add a link to the front page</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{{ url_for(&#39;index&#39;) }}&quot;</span><span class="o">&gt;&lt;</span><span class="n">button</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>As an assignment add a link in the front page to the hello page for <cite>you</cite>.</p></li>
+</ul>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/pym.png" alt="Logo"/>
+  </a>
+</p>
+<p>
+<iframe src="http://ghbtns.com/github-btn.html?user=kushaldas&repo=pym&type=watch&count=true&size=large"
+    allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+<p>
+  pym is a book to learn Python.
+  It targets people who are completely
+  new to the language.
+</p>
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '5225487b613f5d4eaf000117');
+    t.setAttribute('data-track-path', 'https://track.gaug.es/track.gif');
+    t.src = 'https://d2fuc4clr7gvcn.cloudfront.net/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Introduction to Flask</a><ul>
+<li><a class="reference internal" href="#what-is-flask">What is flask?</a></li>
+<li><a class="reference internal" href="#what-are-template-engines">What are template engines?</a></li>
+<li><a class="reference internal" href="#a-hello-world-application-in-flask">A “Hello world” application in flask</a></li>
+<li><a class="reference internal" href="#using-arguments-in-flask">Using arguments in Flask</a></li>
+<li><a class="reference internal" href="#additional-work">Additional work</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="pypercard.html"
+                          title="Previous page">&larr; Simple GUI application development using PyperCard</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/flask.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pypercard.html" title="Simple GUI application development using PyperCard"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">demo1 1.0.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Introduction to Flask</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, ishan.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
