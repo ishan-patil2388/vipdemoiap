@@ -13,20 +13,13 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-import sys, os
 
-sys.path.append(os.path.abspath('_themes'))
-html_theme_path = ['_themes']
-html_theme = 'cloud'
 
 # -- Project information -----------------------------------------------------
 
-project = 'demo1'
-copyright = '2021, ishan'
-author = 'ishan'
-
-# The full version, including alpha/beta/rc tags
-release = '1.0.0'
+project = 'vipdemoiap'
+copyright = '2021, Ishan'
+author = 'Ishan'
 
 
 # -- General configuration ---------------------------------------------------
@@ -46,17 +39,12 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
-html_sidebars = { 
-    'index':    ['sidebarintro.html', 'sourcelink.html', 'searchbox.html'],
-    '**':       ['sidebarlogo.html', 'localtoc.html', 'relations.html',
-                 'sourcelink.html', 'searchbox.html']
-}
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-# html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
